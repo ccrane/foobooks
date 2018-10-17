@@ -11,6 +11,23 @@
 |
 */
 
+# Existing route
 Route::get('/', function () {
     return view('welcome');
 });
+
+# New route
+Route::get('/example', function () {
+    return App::environment();
+});
+
+Route::get('/books', 'BookController@index');
+
+Route::get('/books/{title?}', function($title = '') {
+    if ($title == '') {
+        return 'Your request did not include a title.';
+    } else {
+        return 'Results for the book: '.$title;
+    }
+});
+
