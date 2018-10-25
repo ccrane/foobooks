@@ -120,4 +120,6 @@ return [
         ],
     ],
 
+    'supportEmail' => 'help@foobooks.chriscrane-dwa.me',
+
 ];

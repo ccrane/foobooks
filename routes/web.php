@@ -23,11 +23,10 @@ Route::get('/example', function () {
 
 Route::get('/books', 'BookController@index');
 
-Route::get('/books/{title?}', function($title = '') {
-    if ($title == '') {
-        return 'Your request did not include a title.';
-    } else {
-        return 'Results for the book: '.$title;
-    }
-});
+Route::get('/books/{title}', 'BookController@show');
+
+/**
+ * Practice
+ */
+Route::any('/practice/{n?}', 'PracticeController@index');
 
