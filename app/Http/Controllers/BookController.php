@@ -19,6 +19,7 @@ class BookController extends Controller
      */
     public function show($title)
     {
+        dump(config('mail.supportEmail'));
         return view('books.show')->with(['title' => $title]);
     }
 }
