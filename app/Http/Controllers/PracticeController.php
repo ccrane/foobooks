@@ -4,9 +4,106 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use IanLChapman\PigLatinTranslator\Parser;
+use App\Book;
 
 class PracticeController extends Controller
 {
+
+    public function practice10()
+    {
+        $results = Book::where('author','LIKE', '%J.K. Rowling%')->delete();
+
+        dump($results);
+    }
+
+    public function practice9()
+    {
+        $results = Book::where('author','LIKE', '%J.K. Rowling%')->update([
+            'author' => 'JK Rowling'
+        ]);
+
+        dump($results);
+
+        /*
+        if ($results->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($results as $book) {
+                $book->author = 'JK Rowling';
+                $book->save();
+
+                dump($book);
+            }
+        }
+        */
+    }
+
+    public function practice8()
+    {
+        $results = Book::orderByDesc('published_year')->get();
+
+        if ($results->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($results as $book) {
+                dump($book->title);
+            }
+        }
+    }
+
+    public function practice7()
+    {
+        $results = Book::orderBy('title')->get();
+
+        if ($results->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($results as $book) {
+                dump($book->title);
+            }
+        }
+    }
+
+    public function practice6()
+    {
+        $results = Book::where('published_year', '>', '1950')->get();
+
+        if ($results->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($results as $book) {
+                dump($book->title);
+            }
+        }
+    }
+
+    public function practice5()
+    {
+        $results = Book::latest()->limit(2)->get();
+
+        if ($results->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($results as $book) {
+                dump($book->title);
+            }
+        }
+    }
+
+    public function practice4()
+    {
+        $book = new Book();
+        $books = $book->where('title', 'LIKE', '%Harry Potter%')->get();
+
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+
     /**
      * Demonstrating using an external package
      */
